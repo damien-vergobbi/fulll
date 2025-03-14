@@ -1,4 +1,4 @@
-class LocalizeVehicleCommand {
+class ParkVehicleCommand {
   constructor(fleet, vehicle, location) {
     this.fleet = fleet;
     this.vehicle = vehicle;
@@ -6,8 +6,8 @@ class LocalizeVehicleCommand {
   }
 
   execute() {
-    return this.fleet.localizeVehicle(this.vehicle);
+    this.fleet.parkVehicle(this.vehicle, this.location);
   }
 }
 
-module.exports = LocalizeVehicleCommand;
+module.exports = ParkVehicleCommand; 

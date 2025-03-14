@@ -5,8 +5,8 @@ class RegisterVehicleCommand {
   }
 
   execute() {
-    this.fleet.addVehicle(this.vehicle);
+    this.fleet.registerVehicle(this.vehicle);
   }
 }
 
-module.exports = RegisterVehicleCommand;
+module.exports = RegisterVehicleCommand; 

@@ -48,7 +48,7 @@ class Location {
     return {
       latitude: this.latitude,
       longitude: this.longitude,
-      altitude: this.altitude
+      altitude: this.altitude,
     };
   }
 

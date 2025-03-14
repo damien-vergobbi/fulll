@@ -1,5 +1,5 @@
-const Vehicle = require('./Vehicle');
-const Location = require('./Location');
+const Vehicle = require("./Vehicle");
+const Location = require("./Location");
 
 /**
  * Represents a fleet of vehicles for a specific user
@@ -74,12 +74,12 @@ class Fleet {
       vehiclesArray.push({
         plateNumber: plateNumber,
         vehicle: entry.vehicle.toJSON(),
-        location: entry.location ? entry.location.toJSON() : null
+        location: entry.location ? entry.location.toJSON() : null,
       });
     }
     return {
       userId: this.userId,
-      vehicles: vehiclesArray
+      vehicles: vehiclesArray,
     };
   }
 
@@ -91,13 +91,15 @@ class Fleet {
   static fromJSON(data) {
     const fleet = new Fleet(data.userId);
     if (data.vehicles && Array.isArray(data.vehicles)) {
-      data.vehicles.forEach(entry => {
+      data.vehicles.forEach((entry) => {
         const vehicle = new Vehicle(entry.vehicle.plateNumber);
-        const location = entry.location ? new Location(
-          entry.location.latitude,
-          entry.location.longitude,
-          entry.location.altitude
-        ) : null;
+        const location = entry.location
+          ? new Location(
+              entry.location.latitude,
+              entry.location.longitude,
+              entry.location.altitude
+            )
+          : null;
         fleet.vehicles.set(entry.plateNumber, { vehicle, location });
       });
     }

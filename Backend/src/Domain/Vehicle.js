@@ -24,7 +24,7 @@ class Vehicle {
 
   toJSON() {
     return {
-      plateNumber: this.plateNumber
+      plateNumber: this.plateNumber,
     };
   }
 

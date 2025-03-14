@@ -19,17 +19,17 @@ Given("a location", function () {
   location = new Location(42.3522, 2.3522);
 });
 
-Given("my vehicle has been parked into this location", function () {
+Given("my vehicle has been parked into this location", async function () {
   const command = new ParkVehicleCommand(
     common.getFleetRepository(),
     common.getMyFleet(),
     common.getVehicle(),
     location
   );
-  command.execute();
+  await command.execute();
 });
 
-When("I park my vehicle at this location", function () {
+When("I park my vehicle at this location", async function () {
   try {
     const command = new ParkVehicleCommand(
       common.getFleetRepository(),
@@ -37,14 +37,14 @@ When("I park my vehicle at this location", function () {
       common.getVehicle(),
       location
     );
-    command.execute();
+    await command.execute();
     common.setError(null);
   } catch (e) {
     common.setError(e);
   }
 });
 
-When("I try to park my vehicle at this location", function () {
+When("I try to park my vehicle at this location", async function () {
   try {
     const command = new ParkVehicleCommand(
       common.getFleetRepository(),
@@ -52,7 +52,7 @@ When("I try to park my vehicle at this location", function () {
       common.getVehicle(),
       location
     );
-    command.execute();
+    await command.execute();
     common.setError(null);
   } catch (e) {
     common.setError(e);

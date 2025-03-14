@@ -13,38 +13,38 @@ const common = require("./commonSteps");
 
 Given(
   "this vehicle has been registered into the other user's fleet",
-  function () {
+  async function () {
     const command = new RegisterVehicleCommand(
       common.getFleetRepository(),
       common.getOtherFleet(),
       common.getVehicle()
     );
-    command.execute();
+    await command.execute();
   }
 );
 
-When("I register this vehicle into my fleet", function () {
+When("I register this vehicle into my fleet", async function () {
   try {
     const command = new RegisterVehicleCommand(
       common.getFleetRepository(),
       common.getMyFleet(),
       common.getVehicle()
     );
-    command.execute();
+    await command.execute();
     common.setError(null);
   } catch (e) {
     common.setError(e);
   }
 });
 
-When("I try to register this vehicle into my fleet", function () {
+When("I try to register this vehicle into my fleet", async function () {
   try {
     const command = new RegisterVehicleCommand(
       common.getFleetRepository(),
       common.getMyFleet(),
       common.getVehicle()
     );
-    command.execute();
+    await command.execute();
     common.setError(null);
   } catch (e) {
     common.setError(e);

@@ -1,3 +1,14 @@
+/**
+ * Common step definitions shared across features
+ * Manages shared state and basic steps used in multiple scenarios
+ *
+ * State management:
+ * - Fleets (my fleet and other's fleet)
+ * - Current vehicle
+ * - Error handling
+ * - Fleet repository
+ */
+
 const { Given } = require("@cucumber/cucumber");
 const Fleet = require("../../src/Domain/Fleet");
 const Vehicle = require("../../src/Domain/Vehicle");

@@ -1,3 +1,11 @@
+/**
+ * Step definitions for vehicle parking feature
+ * Implements scenarios:
+ * - Park a vehicle at a location
+ * - Prevent parking at same location twice
+ * - Track vehicle location
+ */
+
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const Location = require("../../src/Domain/Location");
@@ -7,7 +15,6 @@ const common = require("./commonSteps");
 
 let location;
 
-// Specific steps for parking
 Given("a location", function () {
   location = new Location(42.3522, 2.3522);
 });

@@ -1,9 +1,16 @@
+/**
+ * Step definitions for vehicle registration feature
+ * Implements scenarios:
+ * - Register a new vehicle
+ * - Prevent duplicate registration
+ * - Allow same vehicle in multiple fleets
+ */
+
 const { Given, When, Then } = require("@cucumber/cucumber");
 const assert = require("assert");
 const RegisterVehicleCommand = require("../../src/App/Commands/RegisterVehicleCommand");
 const common = require("./commonSteps");
 
-// Specific steps for registering a vehicle
 Given(
   "this vehicle has been registered into the other user's fleet",
   function () {

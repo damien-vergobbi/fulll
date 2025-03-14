@@ -10,4 +10,4 @@ class ParkVehicleCommand {
   }
 }
 
-module.exports = ParkVehicleCommand; 
+module.exports = ParkVehicleCommand;

@@ -9,4 +9,4 @@ class GetVehicleLocationQuery {
   }
 }
 
-module.exports = GetVehicleLocationQuery; 
+module.exports = GetVehicleLocationQuery;

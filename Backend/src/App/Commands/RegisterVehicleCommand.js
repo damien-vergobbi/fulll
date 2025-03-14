@@ -9,4 +9,4 @@ class RegisterVehicleCommand {
   }
 }
 
-module.exports = RegisterVehicleCommand; 
+module.exports = RegisterVehicleCommand;

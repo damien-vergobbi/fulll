@@ -4,7 +4,7 @@ class Fleet {
       throw new Error('Une flotte doit être associée à un utilisateur');
     }
     this.userId = userId;
-    this.vehicles = new Map(); // Map<plateNumber, {vehicle: Vehicle, location: Location}>
+    this.vehicles = new Map();
   }
 
   hasVehicle(vehicle) {

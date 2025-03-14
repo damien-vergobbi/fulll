@@ -36,4 +36,4 @@ Then('this vehicle should be part of my vehicle fleet', function () {
 Then('I should be informed this this vehicle has already been registered into my fleet', function () {
   assert.ok(common.getError());
   assert.equal(common.getError().message, 'Ce véhicule est déjà enregistré dans cette flotte');
-}); 
+});

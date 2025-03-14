@@ -8,10 +8,10 @@ class Location {
 
   validateCoordinates(latitude, longitude) {
     if (latitude < -90 || latitude > 90) {
-      throw new Error('La latitude doit être comprise entre -90 et 90 degrés');
+      throw new Error('Latitude must be between -90 and 90 degrees');
     }
     if (longitude < -180 || longitude > 180) {
-      throw new Error('La longitude doit être comprise entre -180 et 180 degrés');
+      throw new Error('Longitude must be between -180 and 180 degrees');
     }
   }
 
@@ -23,4 +23,4 @@ class Location {
   }
 }
 
-module.exports = Location; 
+module.exports = Location;

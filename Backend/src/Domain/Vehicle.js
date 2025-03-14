@@ -1,7 +1,7 @@
 class Vehicle {
   constructor(plateNumber) {
     if (!plateNumber) {
-      throw new Error('Un véhicule doit avoir un numéro d\'immatriculation');
+      throw new Error('A vehicle must have a license plate number');
     }
     this.plateNumber = plateNumber;
   }
@@ -11,4 +11,4 @@ class Vehicle {
   }
 }
 
-module.exports = Vehicle; 
+module.exports = Vehicle;

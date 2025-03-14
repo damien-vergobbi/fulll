@@ -1,7 +1,7 @@
 class Fleet {
   constructor(userId) {
     if (!userId) {
-      throw new Error('Une flotte doit être associée à un utilisateur');
+      throw new Error('A fleet must be associated with a user');
     }
     this.userId = userId;
     this.vehicles = new Map();
@@ -18,23 +18,23 @@ class Fleet {
 
   registerVehicle(vehicle) {
     if (this.hasVehicle(vehicle)) {
-      throw new Error('Ce véhicule est déjà enregistré dans cette flotte');
+      throw new Error('This vehicle is already registered in this fleet');
     }
     this.vehicles.set(vehicle.plateNumber, { vehicle, location: null });
   }
 
   parkVehicle(vehicle, location) {
     if (!this.hasVehicle(vehicle)) {
-      throw new Error('Ce véhicule n\'est pas enregistré dans cette flotte');
+      throw new Error('This vehicle is not registered in this fleet');
     }
 
     const currentLocation = this.getVehicleLocation(vehicle);
     if (currentLocation && currentLocation.equals(location)) {
-      throw new Error('Le véhicule est déjà garé à cet emplacement');
+      throw new Error('Vehicle already parked at this location');
     }
 
     this.vehicles.set(vehicle.plateNumber, { vehicle, location });
   }
 }
 
-module.exports = Fleet; 
+module.exports = Fleet;

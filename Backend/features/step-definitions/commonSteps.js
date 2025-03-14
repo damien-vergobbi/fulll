@@ -25,15 +25,15 @@ const setters = {
 
 // Common steps
 Given('my fleet', function () {
-  state.myFleet = new Fleet('user-1');
+  state.myFleet = new Fleet('my-user');
 });
 
 Given('the fleet of another user', function () {
-  state.otherFleet = new Fleet('user-2');
+  state.otherFleet = new Fleet('another-user');
 });
 
 Given('a vehicle', function () {
-  state.vehicle = new Vehicle('ABC123');
+  state.vehicle = new Vehicle('AB-123-CD');
 });
 
 Given('I have registered this vehicle into my fleet', function () {
@@ -43,6 +43,6 @@ Given('I have registered this vehicle into my fleet', function () {
 
 // Export getters & setters
 module.exports = {
-    ...getters,
-    ...setters
+  ...getters,
+  ...setters
 };

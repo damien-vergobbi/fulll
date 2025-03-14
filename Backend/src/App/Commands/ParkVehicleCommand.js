@@ -20,9 +20,9 @@ class ParkVehicleCommand {
    * Executes the command
    * @throws {Error} If vehicle is not in fleet or already parked at location
    */
-  execute() {
+  async execute() {
     this.fleet.parkVehicle(this.vehicle, this.location);
-    this.fleetRepository.save(this.fleet);
+    await this.fleetRepository.save(this.fleet);
   }
 }
 

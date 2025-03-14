@@ -18,9 +18,9 @@ class RegisterVehicleCommand {
    * Executes the command
    * @throws {Error} If vehicle is already registered
    */
-  execute() {
+  async execute() {
     this.fleet.registerVehicle(this.vehicle);
-    this.fleetRepository.save(this.fleet);
+    await this.fleetRepository.save(this.fleet);
   }
 }
 

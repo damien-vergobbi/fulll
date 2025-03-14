@@ -1,3 +1,6 @@
+const Vehicle = require('./Vehicle');
+const Location = require('./Location');
+
 /**
  * Represents a fleet of vehicles for a specific user
  * Aggregate root in DDD terms
@@ -66,9 +69,17 @@ class Fleet {
    * @returns {Object} Serialized fleet data
    */
   toJSON() {
+    const vehiclesArray = [];
+    for (const [plateNumber, entry] of this.vehicles.entries()) {
+      vehiclesArray.push({
+        plateNumber: plateNumber,
+        vehicle: entry.vehicle.toJSON(),
+        location: entry.location ? entry.location.toJSON() : null
+      });
+    }
     return {
       userId: this.userId,
-      vehicles: Array.from(this.vehicles.entries()),
+      vehicles: vehiclesArray
     };
   }
 
@@ -79,9 +90,17 @@ class Fleet {
    */
   static fromJSON(data) {
     const fleet = new Fleet(data.userId);
-    data.vehicles.forEach(([plateNumber, entry]) => {
-      fleet.vehicles.set(plateNumber, entry);
-    });
+    if (data.vehicles && Array.isArray(data.vehicles)) {
+      data.vehicles.forEach(entry => {
+        const vehicle = new Vehicle(entry.vehicle.plateNumber);
+        const location = entry.location ? new Location(
+          entry.location.latitude,
+          entry.location.longitude,
+          entry.location.altitude
+        ) : null;
+        fleet.vehicles.set(entry.plateNumber, { vehicle, location });
+      });
+    }
     return fleet;
   }
 }

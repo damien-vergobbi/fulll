@@ -43,6 +43,18 @@ class Location {
       other.altitude === this.altitude
     );
   }
+
+  toJSON() {
+    return {
+      latitude: this.latitude,
+      longitude: this.longitude,
+      altitude: this.altitude
+    };
+  }
+
+  static fromJSON(data) {
+    return new Location(data.latitude, data.longitude, data.altitude);
+  }
 }
 
 module.exports = Location;

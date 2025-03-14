@@ -21,6 +21,16 @@ class Vehicle {
   equals(other) {
     return other instanceof Vehicle && other.plateNumber === this.plateNumber;
   }
+
+  toJSON() {
+    return {
+      plateNumber: this.plateNumber
+    };
+  }
+
+  static fromJSON(data) {
+    return new Vehicle(data.plateNumber);
+  }
 }
 
 module.exports = Vehicle;

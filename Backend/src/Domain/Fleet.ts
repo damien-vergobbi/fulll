@@ -1,44 +1,46 @@
-const Vehicle = require("./Vehicle");
-const Location = require("./Location");
+import { Vehicle } from './Vehicle';
+import { Location } from './Location';
+import { IFleet, IFleetVehicle, IVehicle, ILocation } from './types';
 
 /**
  * Represents a fleet of vehicles for a specific user
  * Aggregate root in DDD terms
  */
-class Fleet {
-  constructor(userId) {
+export class Fleet implements IFleet {
+  private vehicles: Map<string, IFleetVehicle>;
+
+  constructor(public readonly userId: string) {
     if (!userId) {
       throw new Error("A fleet must be associated with a user");
     }
-    this.userId = userId;
     this.vehicles = new Map();
   }
 
   /**
    * Checks if a vehicle is registered in this fleet
-   * @param {Vehicle} vehicle - The vehicle to check
-   * @returns {boolean} True if vehicle is in fleet
+   * @param vehicle - The vehicle to check
+   * @returns True if vehicle is in fleet
    */
-  hasVehicle(vehicle) {
+  hasVehicle(vehicle: Vehicle): boolean {
     return this.vehicles.has(vehicle.plateNumber);
   }
 
   /**
    * Gets the current location of a vehicle
-   * @param {Vehicle} vehicle - The vehicle to locate
-   * @returns {Location|null} The location or null if not found
+   * @param vehicle - The vehicle to locate
+   * @returns The location or null if not found
    */
-  getVehicleLocation(vehicle) {
+  getVehicleLocation(vehicle: Vehicle): ILocation | null {
     const entry = this.vehicles.get(vehicle.plateNumber);
     return entry ? entry.location : null;
   }
 
   /**
    * Registers a new vehicle in the fleet
-   * @param {Vehicle} vehicle - The vehicle to register
+   * @param vehicle - The vehicle to register
    * @throws {Error} If vehicle is already registered
    */
-  registerVehicle(vehicle) {
+  registerVehicle(vehicle: Vehicle): void {
     if (this.hasVehicle(vehicle)) {
       throw new Error("This vehicle is already registered in this fleet");
     }
@@ -47,11 +49,11 @@ class Fleet {
 
   /**
    * Parks a vehicle at a specific location
-   * @param {Vehicle} vehicle - The vehicle to park
-   * @param {Location} location - Where to park the vehicle
+   * @param vehicle - The vehicle to park
+   * @param location - Where to park the vehicle
    * @throws {Error} If vehicle is not registered or already parked at location
    */
-  parkVehicle(vehicle, location) {
+  parkVehicle(vehicle: Vehicle, location: Location): void {
     if (!this.hasVehicle(vehicle)) {
       throw new Error("This vehicle is not registered in this fleet");
     }
@@ -65,46 +67,33 @@ class Fleet {
   }
 
   /**
-   * Serializes the fleet for storage
-   * @returns {Object} Serialized fleet data
+   * Gets all vehicles in the fleet
+   * @returns Map of vehicles and their locations
    */
-  toJSON() {
-    const vehiclesArray = [];
-    for (const [plateNumber, entry] of this.vehicles.entries()) {
-      vehiclesArray.push({
-        plateNumber: plateNumber,
-        vehicle: entry.vehicle.toJSON(),
-        location: entry.location ? entry.location.toJSON() : null,
-      });
-    }
+  getVehicles(): Map<string, IFleetVehicle> {
+    return new Map(this.vehicles);
+  }
+
+  toJSON(): any {
     return {
       userId: this.userId,
-      vehicles: vehiclesArray,
+      vehicles: Array.from(this.vehicles.entries()).map(([plateNumber, entry]) => ({
+        plateNumber,
+        vehicle: entry.vehicle.toJSON(),
+        location: entry.location ? entry.location.toJSON() : null
+      }))
     };
   }
 
-  /**
-   * Creates a Fleet instance from serialized data
-   * @param {Object} data - Serialized fleet data
-   * @returns {Fleet} New Fleet instance
-   */
-  static fromJSON(data) {
+  static fromJSON(data: any): Fleet {
     const fleet = new Fleet(data.userId);
     if (data.vehicles && Array.isArray(data.vehicles)) {
-      data.vehicles.forEach((entry) => {
-        const vehicle = new Vehicle(entry.vehicle.plateNumber);
-        const location = entry.location
-          ? new Location(
-              entry.location.latitude,
-              entry.location.longitude,
-              entry.location.altitude
-            )
-          : null;
+      data.vehicles.forEach((entry: any) => {
+        const vehicle = Vehicle.fromJSON(entry.vehicle);
+        const location = entry.location ? Location.fromJSON(entry.location) : null;
         fleet.vehicles.set(entry.plateNumber, { vehicle, location });
       });
     }
     return fleet;
   }
-}
-
-module.exports = Fleet;
+} 

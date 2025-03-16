@@ -1,14 +1,20 @@
+import { ILocation } from './types';
+
 /**
  * Represents a location with latitude, longitude, and optional altitude
  * Immutable value object in DDD terms
  */
-class Location {
+export class Location implements ILocation {
+  public readonly latitude: number;
+  public readonly longitude: number;
+  public readonly altitude: number | null;
+
   /**
-   * @param {number} latitude - Latitude coordinate
-   * @param {number} longitude - Longitude coordinate
-   * @param {number|null} altitude - Optional altitude
+   * @param latitude - Latitude coordinate
+   * @param longitude - Longitude coordinate
+   * @param altitude - Optional altitude
    */
-  constructor(latitude, longitude, altitude = null) {
+  constructor(latitude: number, longitude: number, altitude: number | null = null) {
     this.validateCoordinates(latitude, longitude);
     this.latitude = latitude;
     this.longitude = longitude;
@@ -17,11 +23,11 @@ class Location {
 
   /**
    * Validates the coordinates of the location
-   * @param {number} latitude - Latitude coordinate
-   * @param {number} longitude - Longitude coordinate
+   * @param latitude - Latitude coordinate
+   * @param longitude - Longitude coordinate
    * @throws {Error} If coordinates are invalid
    */
-  validateCoordinates(latitude, longitude) {
+  private validateCoordinates(latitude: number, longitude: number): void {
     if (latitude < -90 || latitude > 90) {
       throw new Error("Latitude must be between -90 and 90 degrees");
     }
@@ -32,10 +38,10 @@ class Location {
 
   /**
    * Checks if another location is equal to this one
-   * @param {Location} other - The location to compare
-   * @returns {boolean} True if locations are equal
+   * @param other - The location to compare
+   * @returns True if locations are equal
    */
-  equals(other) {
+  equals(other: Location): boolean {
     return (
       other instanceof Location &&
       other.latitude === this.latitude &&
@@ -44,17 +50,18 @@ class Location {
     );
   }
 
-  toJSON() {
-    return {
+  toJSON(): ILocation {
+    const location = {
       latitude: this.latitude,
       longitude: this.longitude,
       altitude: this.altitude,
+      equals: this.equals.bind(this),
+      toJSON: () => this.toJSON()
     };
+    return location;
   }
 
-  static fromJSON(data) {
+  static fromJSON(data: ILocation): Location {
     return new Location(data.latitude, data.longitude, data.altitude);
   }
-}
-
-module.exports = Location;
+} 

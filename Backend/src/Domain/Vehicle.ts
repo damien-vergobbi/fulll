@@ -1,36 +1,33 @@
+import { IVehicle } from './types';
+
 /**
  * Represents a vehicle with a license plate number
  * Immutable value object in DDD terms
  */
-class Vehicle {
-  /**
-   * @param {string} plateNumber - The license plate number of the vehicle
-   */
-  constructor(plateNumber) {
+export class Vehicle implements IVehicle {
+  constructor(public readonly plateNumber: string) {
     if (!plateNumber) {
       throw new Error("A vehicle must have a license plate number");
     }
-    this.plateNumber = plateNumber;
   }
 
   /**
    * Checks if another vehicle is equal to this one
-   * @param {Vehicle} other - The vehicle to compare
-   * @returns {boolean} True if vehicles are equal
+   * @param other - The vehicle to compare
+   * @returns True if vehicles are equal
    */
-  equals(other) {
+  equals(other: Vehicle): boolean {
     return other instanceof Vehicle && other.plateNumber === this.plateNumber;
   }
 
-  toJSON() {
+  toJSON(): IVehicle {
     return {
       plateNumber: this.plateNumber,
+      toJSON: () => this.toJSON()
     };
   }
 
-  static fromJSON(data) {
+  static fromJSON(data: IVehicle): Vehicle {
     return new Vehicle(data.plateNumber);
   }
-}
-
-module.exports = Vehicle;
+} 

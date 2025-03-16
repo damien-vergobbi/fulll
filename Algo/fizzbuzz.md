@@ -1,26 +1,39 @@
 ## [Algo] Fizzbuzz
 
-### Instructions
+### Description
 
-This is the very classical Fizz Buzz.
+A classic implementation of the FizzBuzz problem that prints numbers from 1 to N, replacing:
+- Multiples of 3 with "Fizz"
+- Multiples of 5 with "Buzz"
+- Multiples of both with "FizzBuzz"
 
-### Subject
+### Installation
 
-Display numbers between **1** and **N** by following the rules:
+No installation needed, just Node.js installed on your system.
 
-- if number can be divided by 3: display **Fizz** ;
-- if number can be divided by 5: display **Buzz** ;
-- if number can be divided by 3 **AND** 5 : display **FizzBuzz** ;
-- else: display the number.
+### Usage
 
-#### Guidelines
+```bash
+# Run with default value (N=42)
+node fizzbuzz.js
 
-- Write it in your favorite language (one of: javascript, php)
-- Push your code to a Github repository or any sandbox environment like [codesandbox](https://codesandbox.io)
-- Get ready to justify some of your choices for the interview
+# Run with custom value
+node fizzbuzz.js 30
+```
 
-#### Evaluation
+### Examples
 
-- Quality of the code
-- Scalability of the algorithm
-- Usage of good practices and modern programming language features
+```bash
+$ node fizzbuzz.js 5
+1
+2
+Fizz
+4
+Buzz
+```
+
+### Error Handling
+
+- Invalid inputs will default to 42
+- Numbers too large will display an error message
+- Negative numbers will be converted to positive

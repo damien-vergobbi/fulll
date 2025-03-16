@@ -2,3 +2,4 @@ node_modules
 yarn.lock
 fleet.db
 dist
+fleet

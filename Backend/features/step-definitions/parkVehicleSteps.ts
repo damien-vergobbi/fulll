@@ -26,7 +26,7 @@ Given("my vehicle has been parked into this location", async function () {
   if (!fleet || !vehicle) {
     throw new Error("Fleet or vehicle not initialized");
   }
-  
+
   const command = new ParkVehicleCommand(
     common.getFleetRepository(),
     fleet,
@@ -98,9 +98,6 @@ Then(
   function () {
     const error = common.getError();
     assert.ok(error);
-    assert.equal(
-      error?.message,
-      "Vehicle already parked at this location"
-    );
+    assert.equal(error?.message, "Vehicle already parked at this location");
   }
-); 
+);

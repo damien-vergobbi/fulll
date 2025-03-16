@@ -1,8 +1,8 @@
-import sqlite3 from 'sqlite3';
-import { open, Database } from 'sqlite';
+import sqlite3 from "sqlite3";
+import { open, Database } from "sqlite";
 
-import { IFleet, IFleetRepository } from '@/Domain/types';
-import { Fleet } from '@/Domain/Fleet';
+import { IFleet, IFleetRepository } from "@/Domain/types";
+import { Fleet } from "@/Domain/Fleet";
 
 /**
  * SQLite implementation of Fleet repository
@@ -17,8 +17,8 @@ export class SQLiteFleetRepository implements IFleetRepository {
 
   private async initializeDatabase(): Promise<Database> {
     const db = await open({
-      filename: './fleet.db',
-      driver: sqlite3.Database
+      filename: "./fleet.db",
+      driver: sqlite3.Database,
     });
 
     await db.exec(`
@@ -45,10 +45,10 @@ export class SQLiteFleetRepository implements IFleetRepository {
     const db = await this.dbPromise;
     const fleetData = fleet.toJSON();
 
-    await db.run(
-      'INSERT OR REPLACE INTO fleets (userId, data) VALUES (?, ?)',
-      [fleet.userId, JSON.stringify(fleetData)]
-    );
+    await db.run("INSERT OR REPLACE INTO fleets (userId, data) VALUES (?, ?)", [
+      fleet.userId,
+      JSON.stringify(fleetData),
+    ]);
 
     return fleet;
   }
@@ -60,7 +60,10 @@ export class SQLiteFleetRepository implements IFleetRepository {
    */
   async findByUserId(userId: string): Promise<IFleet | undefined> {
     const db = await this.dbPromise;
-    const row = await db.get('SELECT data FROM fleets WHERE userId = ?', userId);
+    const row = await db.get(
+      "SELECT data FROM fleets WHERE userId = ?",
+      userId
+    );
 
     if (!row) {
       return undefined;
@@ -77,7 +80,7 @@ export class SQLiteFleetRepository implements IFleetRepository {
    */
   async exists(userId: string): Promise<boolean> {
     const db = await this.dbPromise;
-    const row = await db.get('SELECT 1 FROM fleets WHERE userId = ?', userId);
+    const row = await db.get("SELECT 1 FROM fleets WHERE userId = ?", userId);
     return row !== undefined;
   }
 
@@ -87,7 +90,7 @@ export class SQLiteFleetRepository implements IFleetRepository {
    */
   async findAll(): Promise<IFleet[]> {
     const db = await this.dbPromise;
-    const rows = await db.all('SELECT data FROM fleets');
-    return Promise.all(rows.map(row => Fleet.fromJSON(JSON.parse(row.data))));
+    const rows = await db.all("SELECT data FROM fleets");
+    return Promise.all(rows.map((row) => Fleet.fromJSON(JSON.parse(row.data))));
   }
-} 
+}

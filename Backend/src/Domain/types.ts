@@ -31,4 +31,4 @@ export interface IFleetRepository {
   findByUserId(userId: string): Promise<IFleet | undefined>;
   exists(userId: string): Promise<boolean>;
   findAll(): Promise<IFleet[]>;
-} 
+}

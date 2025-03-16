@@ -89,4 +89,4 @@ Then(
       "This vehicle is already registered in this fleet"
     );
   }
-); 
+);

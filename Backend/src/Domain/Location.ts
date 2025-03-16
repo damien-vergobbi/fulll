@@ -1,4 +1,4 @@
-import { ILocation } from '@/Domain/types';
+import { ILocation } from "@/Domain/types";
 
 /**
  * Represents a location with latitude, longitude, and optional altitude
@@ -14,7 +14,11 @@ export class Location implements ILocation {
    * @param longitude - Longitude coordinate
    * @param altitude - Optional altitude
    */
-  constructor(latitude: number, longitude: number, altitude: number | null = null) {
+  constructor(
+    latitude: number,
+    longitude: number,
+    altitude: number | null = null
+  ) {
     this.validateCoordinates(latitude, longitude);
     this.latitude = latitude;
     this.longitude = longitude;
@@ -50,18 +54,27 @@ export class Location implements ILocation {
     );
   }
 
+  /**
+   * Converts the location to a JSON object
+   * @returns JSON representation of the location
+   */
   toJSON(): ILocation {
     const location = {
       latitude: this.latitude,
       longitude: this.longitude,
       altitude: this.altitude,
       equals: this.equals.bind(this),
-      toJSON: () => this.toJSON()
+      toJSON: () => this.toJSON(),
     };
     return location;
   }
 
+  /**
+   * Creates a new location from a JSON object
+   * @param data - JSON representation of the location
+   * @returns New location instance
+   */
   static fromJSON(data: ILocation): Location {
     return new Location(data.latitude, data.longitude, data.altitude);
   }
-} 
+}

@@ -1,5 +1,5 @@
-import { IGetVehicleLocationQuery } from '@/App/types';
-import { IFleet, IVehicle, ILocation } from '@/Domain/types';
+import { IGetVehicleLocationQuery } from "@/App/types";
+import { IFleet, IVehicle, ILocation } from "@/Domain/types";
 
 /**
  * Query to get the current location of a vehicle
@@ -18,4 +18,4 @@ export class GetVehicleLocationQuery implements IGetVehicleLocationQuery {
   execute(): ILocation | null {
     return this.fleet.getVehicleLocation(this.vehicle);
   }
-} 
+}

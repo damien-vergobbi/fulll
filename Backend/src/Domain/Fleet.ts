@@ -1,6 +1,6 @@
-import { Vehicle } from '@/Domain/Vehicle';
-import { Location } from '@/Domain/Location';
-import { IFleet, IFleetVehicle, ILocation } from '@/Domain/types';
+import { Vehicle } from "@/Domain/Vehicle";
+import { Location } from "@/Domain/Location";
+import { IFleet, IFleetVehicle, ILocation } from "@/Domain/types";
 
 /**
  * Represents a fleet of vehicles for a specific user
@@ -74,26 +74,39 @@ export class Fleet implements IFleet {
     return new Map(this.vehicles);
   }
 
+  /**
+   * Converts the fleet to a JSON object
+   * @returns JSON representation of the fleet
+   */
   toJSON(): any {
     return {
       userId: this.userId,
-      vehicles: Array.from(this.vehicles.entries()).map(([plateNumber, entry]) => ({
-        plateNumber,
-        vehicle: entry.vehicle.toJSON(),
-        location: entry.location ? entry.location.toJSON() : null
-      }))
+      vehicles: Array.from(this.vehicles.entries()).map(
+        ([plateNumber, entry]) => ({
+          plateNumber,
+          vehicle: entry.vehicle.toJSON(),
+          location: entry.location ? entry.location.toJSON() : null,
+        })
+      ),
     };
   }
 
+  /**
+   * Creates a new fleet from a JSON object
+   * @param data - JSON representation of the fleet
+   * @returns New fleet instance
+   */
   static fromJSON(data: any): Fleet {
     const fleet = new Fleet(data.userId);
     if (data.vehicles && Array.isArray(data.vehicles)) {
       data.vehicles.forEach((entry: any) => {
         const vehicle = Vehicle.fromJSON(entry.vehicle);
-        const location = entry.location ? Location.fromJSON(entry.location) : null;
+        const location = entry.location
+          ? Location.fromJSON(entry.location)
+          : null;
         fleet.vehicles.set(entry.plateNumber, { vehicle, location });
       });
     }
     return fleet;
   }
-} 
+}

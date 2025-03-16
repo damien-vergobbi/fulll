@@ -1,5 +1,5 @@
-import { IParkVehicleCommand } from '@/App/types';
-import { IFleetRepository, IFleet, IVehicle, ILocation } from '@/Domain/types';
+import { IParkVehicleCommand } from "@/App/types";
+import { IFleetRepository, IFleet, IVehicle, ILocation } from "@/Domain/types";
 
 /**
  * Command to park a vehicle at a specific location
@@ -21,4 +21,4 @@ export class ParkVehicleCommand implements IParkVehicleCommand {
     this.fleet.parkVehicle(this.vehicle, this.location);
     await this.fleetRepository.save(this.fleet);
   }
-} 
+}

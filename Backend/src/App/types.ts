@@ -1,4 +1,4 @@
-import { IFleet, IVehicle, ILocation, IFleetRepository } from '@/Domain/types';
+import { IFleet, IVehicle, ILocation, IFleetRepository } from "@/Domain/types";
 
 export interface ICommand {
   execute(): Promise<void>;
@@ -24,4 +24,4 @@ export interface IParkVehicleCommand extends ICommand {
 export interface IGetVehicleLocationQuery extends IQuery<ILocation | null> {
   fleet: IFleet;
   vehicle: IVehicle;
-} 
+}

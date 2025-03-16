@@ -1,4 +1,4 @@
-import { IFleet, IFleetRepository } from '@/Domain/types';
+import { IFleet, IFleetRepository } from "@/Domain/types";
 
 /**
  * In-memory implementation of Fleet repository
@@ -50,4 +50,4 @@ export class InMemoryFleetRepository implements IFleetRepository {
   async findAll(): Promise<IFleet[]> {
     return Array.from(this.fleets.values());
   }
-} 
+}

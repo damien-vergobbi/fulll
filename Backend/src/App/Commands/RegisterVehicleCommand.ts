@@ -1,5 +1,5 @@
-import { IRegisterVehicleCommand } from '@/App/types';
-import { IFleet, IVehicle, IFleetRepository } from '@/Domain/types';
+import { IRegisterVehicleCommand } from "@/App/types";
+import { IFleet, IVehicle, IFleetRepository } from "@/Domain/types";
 
 /**
  * Command to register a vehicle in a fleet
@@ -20,4 +20,4 @@ export class RegisterVehicleCommand implements IRegisterVehicleCommand {
     this.fleet.registerVehicle(this.vehicle);
     await this.fleetRepository.save(this.fleet);
   }
-} 
+}

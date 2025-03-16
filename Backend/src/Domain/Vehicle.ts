@@ -1,4 +1,4 @@
-import { IVehicle } from '@/Domain/types';
+import { IVehicle } from "@/Domain/types";
 
 /**
  * Represents a vehicle with a license plate number
@@ -20,14 +20,23 @@ export class Vehicle implements IVehicle {
     return other instanceof Vehicle && other.plateNumber === this.plateNumber;
   }
 
+  /**
+   * Converts the vehicle to a JSON object
+   * @returns JSON representation of the vehicle
+   */
   toJSON(): IVehicle {
     return {
       plateNumber: this.plateNumber,
-      toJSON: () => this.toJSON()
+      toJSON: () => this.toJSON(),
     };
   }
 
+  /**
+   * Creates a new vehicle from a JSON object
+   * @param data - JSON representation of the vehicle
+   * @returns New vehicle instance
+   */
   static fromJSON(data: IVehicle): Vehicle {
     return new Vehicle(data.plateNumber);
   }
-} 
+}

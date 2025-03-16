@@ -6,8 +6,8 @@
     "build": "tsc",
     "start": "node dist/cli/fleet.js",
     "dev": "ts-node src/cli/fleet.ts",
-    "test": "cucumber-js --profile default --publish-quiet",
-    "test:watch": "cucumber-js --profile default --watch"
+    "test": "cucumber-js --require-module ts-node/register --require 'features/step-definitions/**/*.ts' --publish-quiet",
+    "test:watch": "cucumber-js --require-module ts-node/register --require 'features/step-definitions/**/*.ts' --watch --publish-quiet"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^8.3.0",

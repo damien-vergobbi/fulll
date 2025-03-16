@@ -1,34 +1,53 @@
-# Requirements
-To run this project you will need a computer with Node, Typescript and Cucumber installed.
-
-# Install
-To install the project, you just have to run `yarn install` to get all the dependencies
-
-# Running the tests
-After installing the dependencies you can run the tests with this command `yarn test`.
-
-# Init
-Make the CLI executable
+## Installation
 
 ```bash
-chmod +x fleet.js
+yarn install
 ```
 
-# CLI Commands
+## Development
+
+### Build
+
+Create the executable `fleet` file at the root:
+```bash
+yarn build
+```
+
+### Testing
+
+Run the test suite:
+```bash
+yarn test
+```
+
+## Usage
+
+### CLI Commands
 
 ```bash
-./fleet.js create <userId> # returns fleetId on the standard output
-./fleet.js register-vehicle <fleetId> <vehiclePlateNumber>
-./fleet.js localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
+./fleet create <userId> # returns fleetId on the standard output
+./fleet register-vehicle <fleetId> <vehiclePlateNumber>
+./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
 
-## Debug Commands
-The following commands are available for debugging and development purposes:
+### Development Commands
 
 ```bash
 # List all fleets and their vehicles with locations
 ./fleet list
 
-# Reset database
-rm fleet.db
+# Clean database, executable and dist directory
+yarn clean
 ```
+
+## Architecture
+
+This project follows Domain-Driven Design (DDD) and Command Query Responsibility Segregation (CQRS) principles:
+
+- `src/Domain/` - Domain models and interfaces
+- `src/App/` - Application layer with commands and queries
+- `src/Infra/` - Infrastructure layer with repositories
+
+## Database
+
+The system uses SQLite for persistence. The database file (`fleet.db`) is automatically created in the root directory.

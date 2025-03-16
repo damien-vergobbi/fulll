@@ -1,4 +1,4 @@
-import { ILocation } from './types';
+import { ILocation } from '@/Domain/types';
 
 /**
  * Represents a location with latitude, longitude, and optional altitude

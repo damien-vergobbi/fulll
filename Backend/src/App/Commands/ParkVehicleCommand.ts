@@ -1,6 +1,5 @@
-import { IFleet, IVehicle, ILocation } from '../../Domain/types';
-import { IFleetRepository } from '../../Domain/types';
-import { IParkVehicleCommand } from '../types';
+import { IParkVehicleCommand } from '@/App/types';
+import { IFleetRepository, IFleet, IVehicle, ILocation } from '@/Domain/types';
 
 /**
  * Command to park a vehicle at a specific location

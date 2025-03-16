@@ -1,5 +1,5 @@
-import { IFleet, IVehicle, ILocation } from '../../Domain/types';
-import { IGetVehicleLocationQuery } from '../types';
+import { IGetVehicleLocationQuery } from '@/App/types';
+import { IFleet, IVehicle, ILocation } from '@/Domain/types';
 
 /**
  * Query to get the current location of a vehicle

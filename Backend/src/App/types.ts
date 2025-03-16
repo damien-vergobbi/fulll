@@ -1,5 +1,4 @@
-import { IFleet, IVehicle, ILocation } from '../Domain/types';
-import { IFleetRepository } from '../Domain/types';
+import { IFleet, IVehicle, ILocation, IFleetRepository } from '@/Domain/types';
 
 export interface ICommand {
   execute(): Promise<void>;

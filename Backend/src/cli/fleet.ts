@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { Fleet } from '../Domain/Fleet';
-import { Vehicle } from '../Domain/Vehicle';
-import { Location } from '../Domain/Location';
-import { RegisterVehicleCommand } from '../App/Commands/RegisterVehicleCommand';
-import { ParkVehicleCommand } from '../App/Commands/ParkVehicleCommand';
-import { SQLiteFleetRepository } from '../Infra/Repositories/SQLiteFleetRepository';
+
+import { Fleet } from '@/Domain/Fleet';
+import { Vehicle } from '@/Domain/Vehicle';
+import { Location } from '@/Domain/Location';
+import { ParkVehicleCommand } from '@/App/Commands/ParkVehicleCommand';
+import { RegisterVehicleCommand } from '@/App/Commands/RegisterVehicleCommand';
+import { SQLiteFleetRepository } from '@/Infra/Repositories/SQLiteFleetRepository';
 
 const fleetRepository = new SQLiteFleetRepository();
 

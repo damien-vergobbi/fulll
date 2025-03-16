@@ -1,6 +1,5 @@
-import { IFleet, IVehicle } from '../../Domain/types';
-import { IFleetRepository } from '../../Domain/types';
-import { IRegisterVehicleCommand } from '../types';
+import { IRegisterVehicleCommand } from '@/App/types';
+import { IFleet, IVehicle, IFleetRepository } from '@/Domain/types';
 
 /**
  * Command to register a vehicle in a fleet

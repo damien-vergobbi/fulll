@@ -1,7 +1,8 @@
 import sqlite3 from 'sqlite3';
 import { open, Database } from 'sqlite';
-import { IFleet, IFleetRepository } from '../../Domain/types';
-import { Fleet } from '../../Domain/Fleet';
+
+import { IFleet, IFleetRepository } from '@/Domain/types';
+import { Fleet } from '@/Domain/Fleet';
 
 /**
  * SQLite implementation of Fleet repository

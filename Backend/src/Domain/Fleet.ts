@@ -1,6 +1,6 @@
-import { Vehicle } from './Vehicle';
-import { Location } from './Location';
-import { IFleet, IFleetVehicle, IVehicle, ILocation } from './types';
+import { Vehicle } from '@/Domain/Vehicle';
+import { Location } from '@/Domain/Location';
+import { IFleet, IFleetVehicle, ILocation } from '@/Domain/types';
 
 /**
  * Represents a fleet of vehicles for a specific user

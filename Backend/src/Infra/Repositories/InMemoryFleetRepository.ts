@@ -1,4 +1,4 @@
-import { IFleet, IFleetRepository } from '../../Domain/types';
+import { IFleet, IFleetRepository } from '@/Domain/types';
 
 /**
  * In-memory implementation of Fleet repository

@@ -1,4 +1,4 @@
-import { IVehicle } from './types';
+import { IVehicle } from '@/Domain/types';
 
 /**
  * Represents a vehicle with a license plate number

@@ -68,7 +68,7 @@ The system uses SQLite for persistence. The database file (`fleet.db`) is automa
    - Complements Cucumber E2E tests
    - Code coverage reporting
 
-### CI/CD Pipeline Proposé
+### CI/CD Pipeline
 
 ```yaml
 # Main step
